@@ -65,6 +65,11 @@ public class Pelicula {
     public void setDuracion(double duracion) {
         this.duracion = duracion;
     }
+
+    @Override
+    public String toString() {
+        return "Pelicula{" + "titulo=" + titulo + ", genero=" + genero + ", anio=" + anio + ", duracion=" + duracion + '}';
+    }
     
     
 }

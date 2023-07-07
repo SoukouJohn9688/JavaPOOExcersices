@@ -27,9 +27,10 @@ import java.util.Scanner;
 public class PeliculasService {
 
     Scanner leer = new Scanner(System.in);
-    Pelicula movie = new Pelicula();
+    
 
     public Pelicula crearPelicula() {
+        Pelicula movie = new Pelicula();
         System.out.println("Porfavor ingrese los datos de la pelicula: ");
         System.out.println("Titulo: ");
         movie.setTitulo(leer.nextLine());
@@ -48,18 +49,19 @@ public class PeliculasService {
     public void listarPeliculas(Pelicula[] vectorPeliculas) {
 
         for (int i = 0; i < vectorPeliculas.length; i++) {
-            System.out.println("Pelicula # " + i + vectorPeliculas[i].getTitulo());
+            System.out.println("Pelicula # " + i +" "+ vectorPeliculas[i].getTitulo());
+            //System.out.println(movie.toString());
         }
     }
 
     public Pelicula buscarPeliculasTitulo(Pelicula[] vectorPeliculas) {        
-        String tituloElegido = "";
+        String tituloElegido;
         System.out.println("Por favor ingrese el titulo de la pelicula: ");
         tituloElegido = leer.nextLine();
-        for (int i = 0; i < vectorPeliculas.length; i++) {
-            if (vectorPeliculas[i].getTitulo().equalsIgnoreCase(tituloElegido)) {
-                System.out.println("La pelicula se encuentra en el catalogo-> " + vectorPeliculas[i].getTitulo());
-                return vectorPeliculas[i];
+        for (Pelicula vectorPelicula : vectorPeliculas) {
+            if (vectorPelicula.getTitulo().equalsIgnoreCase(tituloElegido)) {
+                System.out.println("La pelicula se encuentra en el catalogo-> " + vectorPelicula.getTitulo());
+                return vectorPelicula;
             }
         }
             System.out.println("La pelicula no se encuentra en el catalogo. ");
@@ -68,7 +70,7 @@ public class PeliculasService {
     }
 
     public void buscarPeliculasGenero(Pelicula[] vectorPeliculas) {
-        String generoSeleccionado = "";
+        String generoSeleccionado;
         int cont = 0;
         System.out.println("Por favor ingrese el genero de la pelicula: ");
         generoSeleccionado = leer.nextLine();
@@ -81,6 +83,6 @@ public class PeliculasService {
         if (cont == 0) {
             System.out.println("No hay peliculas dentro de ese genero. ");
         }
-        cont = 0;
+        
 }
 }

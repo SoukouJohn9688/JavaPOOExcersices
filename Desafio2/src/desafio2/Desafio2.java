@@ -41,47 +41,46 @@ public class Desafio2 {
             eleccion=leer.nextInt();
             leer.nextLine();
             switch (eleccion) {
-                case 1:
-                    peliculas.add(servMovie.crearPelicula());
-                    break;
-                case 2:
-                     arregloMovies = new Pelicula[peliculas.size()];
-                     peliculas.toArray(arregloMovies);
-                     servMovie.listarPeliculas(arregloMovies);
-                    break;
-                case 3:
+                case 1 -> peliculas.add(servMovie.crearPelicula());
+                case 2 -> {
+                    System.out.println(peliculas);
+                    arregloMovies = new Pelicula[peliculas.size()];
+                    peliculas.toArray(arregloMovies);
+                    servMovie.listarPeliculas(arregloMovies);
+                }
+                case 3 -> {
                     arregloMovies = new Pelicula[peliculas.size()];
                     peliculas.toArray(arregloMovies);
                     movieElegida=servMovie.buscarPeliculasTitulo(arregloMovies);
                     if(movieElegida!=null){
-                      alquileres.add(servAlq.crearAlquiler(movieElegida));
+                        alquileres.add(servAlq.crearAlquiler(movieElegida));
                     }else{
                         System.out.println("Mi viejo/a, esa pelicula no existe.");
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     arregloAlquileres=new Alquiler[alquileres.size()];
                     alquileres.toArray(arregloAlquileres);
                     servAlq.listarAlquileres(arregloAlquileres);
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     arregloMovies = new Pelicula[peliculas.size()];
                     peliculas.toArray(arregloMovies);
                     servMovie.buscarPeliculasTitulo(arregloMovies);
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     arregloMovies = new Pelicula[peliculas.size()];
                     peliculas.toArray(arregloMovies);
                     servMovie.buscarPeliculasGenero(arregloMovies);
-                    break;
-                case 7:
+                }
+                case 7 -> {
                     arregloAlquileres=new Alquiler[alquileres.size()];
                     alquileres.toArray(arregloAlquileres);
                     System.out.println("Por favor ingrese la fecha del alquiler: ");
                     System.out.println("aaaa-mm-dd");
                     servAlq.buscarAlquiler(arregloAlquileres, LocalDate.parse(leer.nextLine()));
-                    break;
-                case 8:
+                }
+                case 8 -> {
                     System.out.println("Se quiere ir? s/n ");
                     String eleccionSalida=leer.nextLine();
                     if(eleccionSalida.equalsIgnoreCase("s")){
@@ -89,9 +88,8 @@ public class Desafio2 {
                     }else{
                         eleccion=0;
                     }
-                    break;
-                default:
-                     System.out.println("???? Elija una opcion valida porfa, sea serio.");
+                }
+                default -> System.out.println("???? Elija una opcion valida porfa, sea serio.");
             }
             
         }

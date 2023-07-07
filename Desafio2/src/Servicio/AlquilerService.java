@@ -18,10 +18,11 @@ import java.util.Scanner;
 public class AlquilerService {
 
     Scanner leer = new Scanner(System.in);
-    Alquiler alq = new Alquiler();
+    
     PeliculasService servicio = new PeliculasService();
 
     public Alquiler crearAlquiler(Pelicula peliculas) {
+        Alquiler alq = new Alquiler();
         alq.setPelicula(peliculas);
         System.out.println("Ingrese los datos del alquiler:...");
         alq.setFechaInicio(LocalDate.now());
@@ -29,7 +30,7 @@ public class AlquilerService {
         int dias = leer.nextInt();
         alq.setFechaFin(alq.getFechaInicio().plusDays(dias));
         leer.nextLine();
-        System.out.println("Precio: ");
+        //System.out.println("Precio: ");
         alq.setPrecio(calcularServicio(dias));
         return alq;
     }
@@ -53,7 +54,7 @@ public class AlquilerService {
     public double calcularServicio(int dias) {
         double precio = 10;
         if (dias > 3) {
-            precio = precio * 1.1 * dias;
+            precio = precio+(precio*0.1 * dias);
         }
         return precio;
 

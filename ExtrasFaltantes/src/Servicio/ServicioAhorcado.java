@@ -38,8 +38,8 @@ máximas, el valor que ingresó el usuario y encontradas en 0.*/
         }
         
         hangedMan.setVectorPalabras(vector);
-        
-        System.out.println("Jugadas Maximas...");
+        System.out.println("");
+        System.out.println(" Jugadas Maximas...");
         hangedMan.setJugadasMax(leer.nextInt());
         leer.nextLine();
         hangedMan.setLetrasEncontradas(0);
@@ -59,13 +59,11 @@ buscar como se usa el vector.length.
 letra ingresada es parte de la palabra o no. También informará si la letra estaba o no.
     */
     public void buscar(String letra){
-        for (int i = 0; i < hangedMan.getVectorPalabras().length; i++) {
-            if(letra==hangedMan.getVectorPalabras()[i]){
+        for (String vectorPalabra : hangedMan.getVectorPalabras()) {
+            if (letra.equals(vectorPalabra)) {
                 System.out.println("La letra se encuentra en la palabra");
+                break;
                 //hangedMan.setLetrasEncontradas(hangedMan.getLetrasEncontradas()+1);
-            }else{
-                System.out.println("La letra no se encuentra en la palabra");
-                //hangedMan.setJugadasMax(hangedMan.getJugadasMax()-1);
             }
         }
         
@@ -79,8 +77,8 @@ busque una letra que no esté, se le restará uno a sus oportunidades.
     public boolean encontradas(String letra){
         System.out.println("Usted ha encontrado: "+hangedMan.getLetrasEncontradas()+" letras!");
         System.out.println("Le faltan: "+(hangedMan.getVectorPalabras().length-hangedMan.getLetrasEncontradas())+" letras!");
-       for (int i = 0; i < hangedMan.getVectorPalabras().length; i++) {
-            if(letra==hangedMan.getVectorPalabras()[i]){
+        for (String vectorPalabra : hangedMan.getVectorPalabras()) {
+            if (letra.equals(vectorPalabra)) {
                 System.out.println("La letra se encuentra en la palabra");
                 hangedMan.setLetrasEncontradas(hangedMan.getLetrasEncontradas()+1);
                 return true;
@@ -106,21 +104,31 @@ se quede sin intentos. Este método se llamará en el main.
         crearJuego();
         longitud();
         System.out.println("Ingrese una letra...");
-        String letra=leer.nextLine();
+        String letra;
            
-        while (letra.length()>1) {            
+       
+        //buscar(letra);
+        ///////////While principal//////////
+        
+        while(hangedMan.getJugadasMax()>0 &&
+                hangedMan.getLetrasEncontradas()<hangedMan.getVectorPalabras().length)
+        {
+            System.out.println("Ingrese letra");
+            letra=leer.nextLine();
+            while (letra.length()>1) {            
             System.out.println("Recuerde que debe ser una sola letra, intente de nuevo!");
             letra=leer.nextLine();
         }
-        buscar(letra);
-        
-        while(hangedMan.getJugadasMax()>0 ||
-                hangedMan.getLetrasEncontradas()==hangedMan.getVectorPalabras().length)
-        {
             encontradas(letra);
-        
+            
         }
         
-        System.out.println("Genial!! eres un/a fucking genio!!!! La palabra es: "+hangedMan.getVectorPalabras());
+        if(hangedMan.getLetrasEncontradas()==hangedMan.getVectorPalabras().length){
+            System.out.println("Genial!! eres un/a fucking genio!!!! La palabra es: "+hangedMan.getVectorPalabras());
+        }else{
+            System.out.println("Yuca, esa no es la palabra, deberia sentir verguenza!!");
+        }
+        
+       
     }
 }
